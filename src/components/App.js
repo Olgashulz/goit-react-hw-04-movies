@@ -1,10 +1,11 @@
 import { Route, Switch } from 'react-router';
+
 import AppBar from '../components/AppBar/Appbar';
 import Container from './Container';
-// import HomeViev from '../views/HomeViev';
-import MovieDetailsView from '../views/MovieDetailsView';
+
 import HomeView from '../views/HomeViev';
 import MoviesView from '../views/MoviesView';
+import MovieDetailsView from '../views/MovieDetailsView';
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
           <HomeView />
         </Route>
 
-        <Route path="/:moveId">
+        <Route path="/movies/:movieId">
           <MovieDetailsView />
         </Route>
 
