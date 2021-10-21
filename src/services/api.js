@@ -41,3 +41,18 @@ export const fetchFindMovie = async (key, page) => {
   });
   return data.results;
 };
+
+export const fetchCast = async movieId => {
+  const data = await fetch(
+    // `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${key}&page=${page}`,
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`,
+  ).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject({
+      error: new Error(`Your request ${movieId}} did not return any results`),
+    });
+  });
+  return data;
+};

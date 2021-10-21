@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router';
 import AppBar from '../components/AppBar/Appbar';
 import Container from './Container';
 
-import HomeView from '../views/HomeViev';
+import HomeView from '../views/HomeView';
 import MoviesView from '../views/MoviesView';
 import MovieDetailsView from '../views/MovieDetailsView';
 
