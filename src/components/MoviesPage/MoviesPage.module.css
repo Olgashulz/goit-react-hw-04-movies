@@ -1,0 +1,30 @@
+.searchBar {
+  position: absolute;
+  top: 39px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.searchForm_input {
+  margin-right: 20px;
+  font-size: 14px;
+  padding: 5px 14px;
+  font-family: inherit;
+}
+
+.button {
+  text-decoration: none;
+  text-align: center;
+  padding: 7px 29px;
+  border: none;
+  border-radius: 2px;
+  /* font: 18px Arial, Helvetica, sans-serif; */
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #048637;
+  font-family: inherit;
+}
+
+.button:hover {
+  background-color: #006829;
+}

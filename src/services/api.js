@@ -8,7 +8,9 @@ export const fetchMoovies = async page => {
       return response.json();
     }
     return Promise.reject({
-      error: new Error(`Your request ${page}} did not return any results`),
+      error: new Error(
+        `Sorry, the server is temporarily unavailable. Please try again later.`,
+      ),
     });
   });
   return data.results;
@@ -22,7 +24,9 @@ export const fetchMovieDetails = async movieId => {
       return response.json();
     }
     return Promise.reject({
-      error: new Error(`Your request ${movieId}} did not return any results`),
+      error: new Error(
+        `Sorry, the server is temporarily unavailable. Please try again later.`,
+      ),
     });
   });
   return data;
@@ -44,15 +48,13 @@ export const fetchFindMovie = async (key, page) => {
 
 export const fetchCast = async movieId => {
   const data = await fetch(
-    // `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${key}&page=${page}`,
-    // `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`,
     `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`,
   ).then(response => {
     if (response.ok) {
       return response.json();
     }
     return Promise.reject({
-      error: new Error(`Your request ${movieId}} did not return any results`),
+      error: new Error(`This information is not available`),
     });
   });
   return data.cast;
@@ -60,16 +62,13 @@ export const fetchCast = async movieId => {
 
 export const fetchReviews = async movieId => {
   const data = await fetch(
-    // `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${key}&page=${page}`,
-    // `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=en-US`,
-    // `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`
     `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
   ).then(response => {
     if (response.ok) {
       return response.json();
     }
     return Promise.reject({
-      error: new Error(`Your request ${movieId}} did not return any results`),
+      error: new Error(`This information is not available`),
     });
   });
   return data.results;

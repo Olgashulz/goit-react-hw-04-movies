@@ -1,19 +1,16 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 import styles from './FilmListMarkup.module.css';
 
-export default function FilmListMarkup(props) {
-  const { url } = useRouteMatch();
-  const { films } = props;
-
+export default function FilmListMarkup({ films }) {
   return (
     <ul className={styles.list}>
       {films.map(film => {
         return (
           <li className={styles.item} key={film.id}>
-            <Link to={`${url}/${film.id}`}>
+            <Link to={`/movies/ ${film.id}`}>
               <div className={styles.card}>
                 {film.poster_path ? (
                   <img

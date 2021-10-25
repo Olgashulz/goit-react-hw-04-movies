@@ -1,13 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 import FilmListMarkup from '../FilmListMarkup';
+import ErrorResponse from '../ErrorResponse/ErrorResponse';
+import * as api from '../../services/api';
 
-export default function HomePage(props) {
-  const { films } = props;
+export default function HomePage() {
+  const [films, setFilms] = useState([]);
+  const [page, setPage] = useState(1);
 
-  return <FilmListMarkup films={films} />;
+  useEffect(() => {
+    api.fetchMoovies(page).then(setFilms);
+  }, [page]);
+
+  return (
+    <>
+      {films.length > 0 ? <FilmListMarkup films={films} /> : <ErrorResponse />}
+    </>
+  );
 }
-
-HomePage.proTotypes = {
-  props: PropTypes.array.isRequired,
-};

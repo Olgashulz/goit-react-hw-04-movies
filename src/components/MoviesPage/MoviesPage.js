@@ -1,13 +1,13 @@
 import { useState } from 'react';
-// import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import * as api from '../../services/api';
 
 import FilmListMarkup from '../FilmListMarkup';
+import styles from './MoviesPage.module.css';
 
-export default function Searchbar() {
+export default function MoviesPage() {
   const [inputValue, setInputValue] = useState('');
   const [page, setPage] = useState(1);
   const [SerchFilm, setSerchFilm] = useState([]);
@@ -19,36 +19,30 @@ export default function Searchbar() {
   const handleOnSubmit = event => {
     event.preventDefault();
 
-    // if (inputValue.trim() === '') {
-    //     return toast.error('Please enter keyword.');
-    // }
+    if (inputValue.trim() === '') {
+      return toast.error('Please enter keyword.');
+    }
 
     api.fetchFindMovie(inputValue, page).then(setSerchFilm);
   };
 
   return (
     <>
-      <header className="Searchbar">
-        <form className="SearchForm" onSubmit={handleOnSubmit}>
+      <div className={styles.searchBar}>
+        <form className={styles.searchForm} onSubmit={handleOnSubmit}>
           <input
-            className="SearchForm-input"
+            className={styles.searchForm_input}
             type="text"
             value={inputValue}
             onChange={handleInputValueChange}
-            placeholder="Search film"
+            placeholder="Movie title"
           />
-          <button type="submit" className="SearchForm-button">
+          <button type="submit" className={styles.button}>
             <span className="SearchForm-button-label">Search</span>
           </button>
         </form>
-      </header>
+      </div>
       {SerchFilm && <FilmListMarkup films={SerchFilm} />}
     </>
   );
 }
-
-// Searchbar.proTotypes = {
-//     onSubmit: PropTypes.func.isRequired,
-//     removeImages: PropTypes.func.isRequired,
-//     resetState: PropTypes.func,
-// };

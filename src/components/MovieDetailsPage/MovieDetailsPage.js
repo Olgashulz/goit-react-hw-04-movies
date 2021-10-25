@@ -1,17 +1,22 @@
+import { lazy, Suspense } from 'react';
 import { useState, useEffect } from 'react';
 import { NavLink, Route, useRouteMatch, useParams } from 'react-router-dom';
-import * as api from '../services/api';
+import * as api from '../../services/api';
 import {} from 'react-router-dom';
 
-import styles from '../components/MovieDetailsPage/MovieDetailsPage.module.css';
-import Cast from '../components/Cast/Cast';
-import Reviews from '../components/Reviews/Reviews';
+import styles from '../MovieDetailsPage/MovieDetailsPage.module.css';
+import Loader from '../Loader/Loader';
+
+const Cast = lazy(() =>
+  import('../Cast/Cast' /*webpackChungName: "Cast-block"*/),
+);
+const Reviews = lazy(() =>
+  import('../Reviews/Reviews' /*webpackChungName: "Reviews-block"*/),
+);
 
 export default function MovieDetailsView() {
-  // const params = useParams();
-  // console.log(params.movieId);
   const { movieId } = useParams();
-  console.log(movieId);
+  // console.log(movieId);
 
   const [MovieDetails, setMovieDetails] = useState(null);
   const { url, path } = useRouteMatch();
@@ -19,8 +24,6 @@ export default function MovieDetailsView() {
   useEffect(() => {
     api.fetchMovieDetails(movieId).then(setMovieDetails);
   }, [movieId]);
-
-  // console.log(movieId);
 
   return (
     <>
@@ -57,12 +60,14 @@ export default function MovieDetailsView() {
                 Reviews
               </NavLink>
 
-              <Route path={`${path}/cast`}>
-                <Cast moveId={movieId} />
-              </Route>
-              <Route path={`${path}/reviews`}>
-                <Reviews smoveId={movieId} />
-              </Route>
+              <Suspense fallback={<Loader />}>
+                <Route path={`${path}/cast`}>
+                  <Cast moveId={movieId} />
+                </Route>
+                <Route path={`${path}/reviews`}>
+                  <Reviews smoveId={movieId} />
+                </Route>
+              </Suspense>
             </div>
           </div>
         </>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Route, useRouteMatch, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './Cast.module.css';
 
 import * as api from '../../services/api';
@@ -9,9 +9,13 @@ export default function Cast() {
   const { movieId } = useParams();
 
   useEffect(() => {
-    console.log(movieId);
+    // console.log(movieId);
     api.fetchCast(movieId).then(setActors);
   }, [movieId]);
+
+  if (actors.length < 1) {
+    return <h3> Unfortunately, there is no information about the cast.</h3>;
+  }
 
   return (
     <>
@@ -22,7 +26,7 @@ export default function Cast() {
           }
 
           return (
-            <li className={styles.item}>
+            <li className={styles.item} key={actor.id}>
               <figure>
                 <img
                   className="gallery__video"

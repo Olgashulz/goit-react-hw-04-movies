@@ -1,9 +1,4 @@
 .list {
-  /* position: absolute;
-  background-color: beige;
-  top: 620px;
-  width: 100%;
-  left: 0; */
   overflow: auto;
   width: 610px;
   height: 205px;
@@ -11,6 +6,9 @@
   background-color: white;
   border-radius: 3px;
   padding: 20px;
+  -webkit-box-shadow: 2px 1px 24px -9px rgba(80, 90, 97, 0.29) inset;
+  -moz-box-shadow: 2px 1px 24px -9px rgba(80, 90, 97, 0.29) inset;
+  box-shadow: 2px 1px 24px -9px rgba(80, 90, 97, 0.29) inset;
 }
 
 .title {
