@@ -1,0 +1,38 @@
+.list {
+  /* position: absolute;
+  background-color: beige;
+  top: 620px;
+  width: 100%;
+  left: 0; */
+  overflow: auto;
+  width: 610px;
+  height: 205px;
+  border: 1px solid #e1e1e1;
+  background-color: white;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.text {
+  font-size: 13px;
+  line-height: 1.5;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.data {
+  font-size: 13px;
+  font-weight: 700;
+  text-align: end;
+}
+
+.item {
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 10px;
+}
