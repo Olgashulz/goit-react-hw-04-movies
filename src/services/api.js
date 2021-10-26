@@ -32,9 +32,9 @@ export const fetchMovieDetails = async movieId => {
   return data;
 };
 
-export const fetchFindMovie = async (key, page) => {
+export const fetchFindMovie = async key => {
   const data = await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${key}&page=${page}`,
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${key}`,
   ).then(response => {
     if (response.ok) {
       return response.json();

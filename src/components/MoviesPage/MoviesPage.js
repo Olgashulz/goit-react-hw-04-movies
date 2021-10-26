@@ -9,7 +9,6 @@ import styles from './MoviesPage.module.css';
 
 export default function MoviesPage() {
   const [inputValue, setInputValue] = useState('');
-  const [page, setPage] = useState(1);
   const [SerchFilm, setSerchFilm] = useState([]);
 
   const handleInputValueChange = event => {
@@ -23,7 +22,7 @@ export default function MoviesPage() {
       return toast.error('Please enter keyword.');
     }
 
-    api.fetchFindMovie(inputValue, page).then(setSerchFilm);
+    api.fetchFindMovie(inputValue).then(setSerchFilm);
   };
 
   return (
