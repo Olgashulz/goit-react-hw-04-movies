@@ -1,6 +1,13 @@
 import { lazy, Suspense } from 'react';
 import { useState, useEffect } from 'react';
-import { NavLink, Route, useRouteMatch, useParams } from 'react-router-dom';
+import {
+  NavLink,
+  Route,
+  useRouteMatch,
+  useParams,
+  useLocation,
+  useHistory,
+} from 'react-router-dom';
 import * as api from '../../services/api';
 import {} from 'react-router-dom';
 
@@ -15,8 +22,11 @@ const Reviews = lazy(() =>
 );
 
 export default function MovieDetailsView() {
+  const history = useHistory();
+  const location = useLocation();
   const { movieId } = useParams();
   // console.log(movieId);
+  console.log(location);
 
   const [MovieDetails, setMovieDetails] = useState(null);
   const { url, path } = useRouteMatch();
@@ -25,8 +35,24 @@ export default function MovieDetailsView() {
     api.fetchMovieDetails(movieId).then(setMovieDetails);
   }, [movieId]);
 
+  const handleGoBack = () => {
+    if (location.state && location.state.from) {
+      history.push(location.state.from);
+    }
+
+    if (location?.state?.from === '/movies') {
+      history.push({
+        pathname: `location.state.from`,
+        search: `?query=${location.state.search}`,
+      });
+    }
+  };
+
   return (
     <>
+      <button className={styles.backBtn} type="button" onClick={handleGoBack}>
+        Go back
+      </button>
       {MovieDetails && (
         <>
           <div className={styles.container}>

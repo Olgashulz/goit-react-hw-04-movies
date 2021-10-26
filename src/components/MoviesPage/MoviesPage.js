@@ -25,6 +25,10 @@ export default function MoviesPage() {
     api.fetchFindMovie(inputValue).then(setSerchFilm);
   };
 
+  // const backmovie = () => {
+  //   api.fetchFindMovie(inputValue).then(setSerchFilm);
+  // }
+
   return (
     <>
       <div className={styles.searchBar}>
@@ -41,7 +45,9 @@ export default function MoviesPage() {
           </button>
         </form>
       </div>
-      {SerchFilm && <FilmListMarkup films={SerchFilm} />}
+      {SerchFilm && (
+        <FilmListMarkup films={SerchFilm} inputValue={inputValue} />
+      )}
     </>
   );
 }
