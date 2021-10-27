@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -10,6 +11,8 @@ import styles from './MoviesPage.module.css';
 export default function MoviesPage() {
   const [inputValue, setInputValue] = useState('');
   const [SerchFilm, setSerchFilm] = useState([]);
+  const history = useHistory();
+  const location = useLocation();
 
   const handleInputValueChange = event => {
     setInputValue(event.currentTarget.value.toLowerCase());
@@ -23,6 +26,11 @@ export default function MoviesPage() {
     }
 
     api.fetchFindMovie(inputValue).then(setSerchFilm);
+
+    history.push({
+      ...location,
+      search: `query=${inputValue}`,
+    });
   };
 
   // const backmovie = () => {
