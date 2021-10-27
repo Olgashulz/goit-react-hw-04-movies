@@ -73,6 +73,22 @@
   color: rgb(112, 202, 120);
 }
 
+.backBtn {
+  background-image: url(../../pictures/back.png);
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 16px;
+  background-color: transparent;
+}
+
+.backBtn:hover {
+  background-image: url(../../pictures/backHover.png);
+}
+
 @media screen and (min-width: 768px) {
   .modal_card {
     margin: auto;

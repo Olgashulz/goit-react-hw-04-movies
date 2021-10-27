@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -13,6 +13,13 @@ export default function MoviesPage() {
   const [SerchFilm, setSerchFilm] = useState([]);
   const history = useHistory();
   const location = useLocation();
+
+  useEffect(() => {
+    if (location.search !== '') {
+      api.fetchFindMovie(location.search.split('=')[1]).then(setSerchFilm);
+      setInputValue(location.search.split('=')[1]);
+    }
+  }, [location]);
 
   const handleInputValueChange = event => {
     setInputValue(event.currentTarget.value.toLowerCase());
@@ -32,10 +39,6 @@ export default function MoviesPage() {
       search: `query=${inputValue}`,
     });
   };
-
-  // const backmovie = () => {
-  //   api.fetchFindMovie(inputValue).then(setSerchFilm);
-  // }
 
   return (
     <>

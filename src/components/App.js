@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router';
 
 import { ToastContainer } from 'react-toastify';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import AppBar from '../components/AppBar/Appbar';

@@ -26,7 +26,7 @@ export default function MovieDetailsView() {
   const location = useLocation();
   const { movieId } = useParams();
   // console.log(movieId);
-  console.log(location);
+  // console.log(location);
 
   const [MovieDetails, setMovieDetails] = useState(null);
   const { url, path } = useRouteMatch();
@@ -50,9 +50,11 @@ export default function MovieDetailsView() {
 
   return (
     <>
-      <button className={styles.backBtn} type="button" onClick={handleGoBack}>
-        Go back
-      </button>
+      <button
+        className={styles.backBtn}
+        type="button"
+        onClick={handleGoBack}
+      ></button>
       {MovieDetails && (
         <>
           <div className={styles.container}>
