@@ -46,7 +46,7 @@ export default function MovieDetailsView() {
         search: `?query=${location.state.search}`,
       });
     }
-    history.push('/');
+    // history.push('/');
   };
 
   return (
