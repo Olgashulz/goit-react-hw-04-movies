@@ -26,7 +26,8 @@ export default function MovieDetailsView() {
   const location = useLocation();
   const { movieId } = useParams();
   // console.log(movieId);
-  // console.log(location);
+  console.log(location.pathname);
+  console.log(location.state.from);
 
   const [MovieDetails, setMovieDetails] = useState(null);
   const { url, path } = useRouteMatch();
@@ -36,6 +37,8 @@ export default function MovieDetailsView() {
   }, [movieId]);
 
   const handleGoBack = () => {
+    history.push(location?.state?.from ?? '/');
+
     if (location.state && location.state.from) {
       history.push(location.state.from);
     }
@@ -46,7 +49,13 @@ export default function MovieDetailsView() {
         search: `?query=${location.state.search}`,
       });
     }
-    // history.push('/');
+
+    if (
+      location.pathname === `/movies/${movieId}/reviews` ||
+      location.pathname === `/movies/${movieId}/cast`
+    ) {
+      history.push(location.state.from);
+    }
   };
 
   return (
@@ -82,10 +91,28 @@ export default function MovieDetailsView() {
               </ul>
               <p className={styles.overviev}>{MovieDetails.overview}</p>
 
-              <NavLink to={`${url}/cast`} className={styles.cast_title}>
+              <NavLink
+                to={{
+                  pathname: `/movies/${movieId}/cast`,
+                  state: {
+                    from: location,
+                    state: { from: location?.state?.from },
+                  },
+                }}
+                className={styles.cast_title}
+              >
                 Cast
               </NavLink>
-              <NavLink to={`${url}/reviews`} className={styles.cast_title}>
+              <NavLink
+                to={{
+                  pathname: `/movies/${movieId}/reviews`,
+                  state: {
+                    from: location,
+                    state: { from: location?.state?.from },
+                  },
+                }}
+                className={styles.cast_title}
+              >
                 Reviews
               </NavLink>
 
