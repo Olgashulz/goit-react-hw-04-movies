@@ -25,7 +25,7 @@ export default function MovieDetailsView() {
   const history = useHistory();
   const location = useLocation();
   const { movieId } = useParams();
-  // console.log(movieId);
+
   console.log(location.pathname);
   console.log(location.state.from);
 
@@ -40,7 +40,7 @@ export default function MovieDetailsView() {
     history.push(location?.state?.from ?? '/');
 
     if (location.state && location.state.from) {
-      history.push(location.state.from);
+      history.push(location.state);
     }
 
     if (location?.state?.from === '/movies') {
