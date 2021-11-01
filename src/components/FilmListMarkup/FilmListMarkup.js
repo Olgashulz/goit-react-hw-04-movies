@@ -16,8 +16,9 @@ export default function FilmListMarkup({ films, inputValue }) {
               to={{
                 pathname: `/movies/${film.id}`,
                 state: {
-                  from: location,
-                  serch: inputValue,
+                  from: location?.pathname,
+                  // serch: `?query=${inputValue}`,
+                  search: inputValue,
                 },
               }}
             >

@@ -26,35 +26,27 @@ export default function MovieDetailsView() {
   const location = useLocation();
   const { movieId } = useParams();
 
-  console.log(location.pathname);
-  console.log(location.state.from);
+  // console.log(location.pathname);
+  // console.log(location.state.from);
+  // console.log(location.state.search);
 
   const [MovieDetails, setMovieDetails] = useState(null);
-  const { url, path } = useRouteMatch();
+  const { path } = useRouteMatch();
 
   useEffect(() => {
     api.fetchMovieDetails(movieId).then(setMovieDetails);
   }, [movieId]);
 
   const handleGoBack = () => {
-    history.push(location?.state?.from ?? '/');
+    // console.log(location.state.search)
 
-    if (location.state && location.state.from) {
-      history.push(location.state);
-    }
+    history.push(location?.state?.from ?? '/');
 
     if (location?.state?.from === '/movies') {
       history.push({
-        pathname: `location.state.from`,
+        pathname: location.state.from,
         search: `?query=${location.state.search}`,
       });
-    }
-
-    if (
-      location.pathname === `/movies/${movieId}/reviews` ||
-      location.pathname === `/movies/${movieId}/cast`
-    ) {
-      history.push(location.state.from);
     }
   };
 
@@ -95,8 +87,8 @@ export default function MovieDetailsView() {
                 to={{
                   pathname: `/movies/${movieId}/cast`,
                   state: {
-                    from: location,
-                    state: { from: location?.state?.from },
+                    from: location?.state?.from,
+                    search: location.state.search,
                   },
                 }}
                 className={styles.cast_title}
@@ -107,8 +99,8 @@ export default function MovieDetailsView() {
                 to={{
                   pathname: `/movies/${movieId}/reviews`,
                   state: {
-                    from: location,
-                    state: { from: location?.state?.from },
+                    from: location?.state?.from,
+                    search: location.state.search,
                   },
                 }}
                 className={styles.cast_title}
